@@ -29,7 +29,7 @@ class StringCalc
      *
      * @const string
      */
-    const VERSION = '2.0.0';
+    const VERSION = '1.0.12';
 
     /**
      * Closure that is called at the end of the grammar checking
@@ -106,7 +106,9 @@ class StringCalc
 
         $calculator = $this->container->get('stringcalc_calculator');
 
-        return $calculator->calculate($rootNode);
+        $result = $calculator->calculate($rootNode);
+
+        return $result;
     }
 
     /**
@@ -132,7 +134,9 @@ class StringCalc
 
         $tokenizer = new Tokenizer($inputStream, $stringHelper);
 
-        return $tokenizer->tokenize();
+        $tokens = $tokenizer->tokenize();
+
+        return $tokens;
     }
 
     /**
@@ -150,7 +154,9 @@ class StringCalc
             $parser->setCustomGrammarChecker($this->customGrammarChecker);
         }
 
-        return $parser->parse($tokens);
+        $rootNode = $parser->parse($tokens);
+
+        return $rootNode;
     }
 
     /**
